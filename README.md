@@ -10,7 +10,7 @@ read strings from property files and save them into json files
 + jsonKey: name of the key in the json file
 + compareFunction: a function to match the property file and the json file by languages
 
-### limiation
+### limitation
 + multiple property files for one language not supported
 + multiple keys adding in one time not supported
 
