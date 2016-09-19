@@ -4,10 +4,56 @@ var path=require('path');
 
 exports.contentHelper = contentHelper;
 
+exports.contentHelper1 = contentHelper1;
+
+exports.parseProFile = parseProFile;
+
+exports.gl_languages = gl_languages;
+
+
+var gl_languages = [ 'ar',
+    'bg',
+    'ca',
+    'cs',
+    'da',
+    'de',
+    'el',
+    'en',
+    'es',
+    'eu',
+    'fi',
+    'fr',
+    'hr',
+    'hu',
+    'in',
+    'it',
+    'iw',
+    'ja',
+    'kk',
+    'ko',
+    'nl',
+    'no',
+    'pl',
+    'pt',
+    'ro',
+    'ru',
+    'sk',
+    'sl',
+    'sr',
+    'sv',
+    'th',
+    'tr',
+    'zh',
+    'zh' ]
+
 
 function getStringFromKey(key, content){
     //console.log(content);
-    return content[key];
+    if(content){
+        return content[key];
+    }
+    console.log("warning - content is null.");
+    return '';
 }
 
 
@@ -30,6 +76,7 @@ function parseProFile (path, encoding){
             }
         }
     } catch (e) {
+        console.log('error when parsing property file - ' + path);
         console.log(e);
         return null;
     }
@@ -37,10 +84,17 @@ function parseProFile (path, encoding){
 }
 
 function readJsonFile(path){
-    var content = fs.readFileSync(path);
-    var jsonObj =  JSON.parse(content);
+    try{
+        var content = fs.readFileSync(path);
+        var jsonObj =  JSON.parse(content);
+        return jsonObj;
+    } catch (e){
 
-    return jsonObj;
+        console.log('error when reading json file - ' + path);
+        console.log(e);
+        return '';
+    }
+
 }
 
 
@@ -51,7 +105,14 @@ function getFiles(filepath){
 
 }
 
-
+/**
+ * proFilePath: location for the property  files
+ * jsonFilePath: location for the source json files
+ * resultFilePath: location for the output json files
+ * proKey:  name of the key in the property file
+ * jsonKey: name of the key in the json file
+ * compareFunction: a function to match the property file and the json file by languages
+ */
 
 function contentHelper(proFilePath, jsonFilePath, resultFilePath, proKey, jsonKey, compareFunction){
 
@@ -92,6 +153,41 @@ function contentHelper(proFilePath, jsonFilePath, resultFilePath, proKey, jsonKe
         })
 
     })
+
+}
+
+
+/**
+ * languages: the languages need to handle
+ * proFilePath: location for the property  files
+ * jsonFilePath: location for the source json files
+ * resultFilePath: location for the output json files
+ * proKey:  name of the key in the property file
+ * jsonKey: name of the key in the json file
+ * generateProFileNameByLanguage: a function to generate the name of property file
+ * generateJsonFileNameByLanguage： a function to generate the name of json file
+ */
+
+function contentHelper1(languages, proFilePath, jsonFilePath, resultFilePath,
+                       proKey, jsonKey, generateProFileNameByLanguage, generateJsonFileNameByLanguage){
+
+    languages.forEach(function(language){
+        console.log("working on - " + language);
+        var inputFilePath =  proFilePath + generateProFileNameByLanguage(language);
+        var jsonFileName =  generateJsonFileNameByLanguage(language);
+        var sourceFilePath =  proFilePath + jsonFileName;
+
+        var value = getStringFromKey(proKey, parseProFile(inputFilePath));
+        var result = readJsonFile(sourceFilePath);
+        result[jsonKey] = value;
+        var resultPath = resultFilePath + '/' + jsonFileName;
+
+        console.log("write new file to - " + resultPath);
+
+        fs.writeFileSync(resultPath, JSON.stringify(result, null, 4));
+    });
+
+
 
 }
 
