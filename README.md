@@ -30,7 +30,7 @@ helper.contentHelper(proFilePath, jsonFilePath, resultFilePath, proKey, jsonKey,
     return name == sourceFileName;
 
 });
-
+```
 ### result
 
 ```javascript
@@ -42,4 +42,4 @@ write new file to - /Users/shun/globlization_support/test/result/en.json
 write new file to - /Users/shun/globlization_support/test/result/en_US.json
 write new file to - /Users/shun/globlization_support/test/result/zh.json
 write new file to - /Users/shun/globlization_support/test/result/zh_CN.json
-
+```
