@@ -4,7 +4,7 @@
         "email": "lishunls098@163.com",
         "url": ""
     },
-    "name": "gl support",
+    "name": "gl_support",
     "main": "./main",
     "description": "A helper to add the strings in property files into json files for globlization",
     "version": "0.0.1",
