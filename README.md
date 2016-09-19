@@ -51,7 +51,7 @@ write new file to - /Users/shun/globlization_support/test/result/zh_CN.json
 ```
 
 
-### contentHelper1(languages, proFilePath, jsonFilePath, resultFilePath,proKey, jsonKey, generateProFileNameByLanguage, generateJsonFileNameByLanguage)
+### contentHelper1(languages, proFilePath, jsonFilePath, resultFilePath, proKey, jsonKey, generateProFileNameByLanguage, generateJsonFileNameByLanguage)
         
 + languages: the languages need to handle
 + proFilePath: location for the property  files
@@ -78,10 +78,6 @@ function g4j(name){
     return name + '.json';
 }
 
-var test = ['aa', 'bb'];
-test.forEach(function(tem){
-    console.log(tem);
-});
 
 helper.contentHelper1(gl_languages, proFilePath, jsonFilePath, resultFilePath, proKey, jsonKey,g4p, g4j);
 ```
