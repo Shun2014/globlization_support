@@ -175,7 +175,7 @@ function contentHelper1(languages, proFilePath, jsonFilePath, resultFilePath,
         console.log("working on - " + language);
         var inputFilePath =  proFilePath + generateProFileNameByLanguage(language);
         var jsonFileName =  generateJsonFileNameByLanguage(language);
-        var sourceFilePath =  proFilePath + jsonFileName;
+        var sourceFilePath =  jsonFilePath + jsonFileName;
 
         var value = getStringFromKey(proKey, parseProFile(inputFilePath));
         var result = readJsonFile(sourceFilePath);
