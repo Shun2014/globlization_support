@@ -1,0 +1,97 @@
+
+var fs=require('fs');
+var path=require('path');
+
+exports.contentHelper = contentHelper;
+
+
+function getStringFromKey(key, content){
+    //console.log(content);
+    return content[key];
+}
+
+
+
+
+function parseProFile (path, encoding){
+    var encoding = encoding==null?'UTF-8':encoding;
+    try {
+        var content = fs.readFileSync(path, encoding);
+        var regDC = /\s*(#+)/;  //reg for deleting comments
+        var regDS = /\s*=\s*/;  //reg for deleting space near '='
+        var keyvalue = {};
+
+        var temp = null;
+        var regDE = /.+/g;  //reg for enter
+        while(temp=regDE.exec(content)) {
+            if (!regDC.test(temp)) {
+                keyvalue[temp.toString().split(regDS)[0]] = temp.toString().split(regDS)[1];
+                //console.log(temp.toString());
+            }
+        }
+    } catch (e) {
+        console.log(e);
+        return null;
+    }
+    return keyvalue;
+}
+
+function readJsonFile(path){
+    var content = fs.readFileSync(path);
+    var jsonObj =  JSON.parse(content);
+
+    return jsonObj;
+}
+
+
+
+function getFiles(filepath){
+
+    return fs.readdirSync(filepath);
+
+}
+
+
+
+function contentHelper(proFilePath, jsonFilePath, resultFilePath, proKey, jsonKey, compareFunction){
+
+
+
+    var inputFiles = getFiles(proFilePath);
+    console.log("list property files: ");
+    console.log(inputFiles);
+
+
+
+    var sourceFiles = getFiles(jsonFilePath);
+
+    console.log("list json files: ");
+    console.log(sourceFiles);
+
+    inputFiles.forEach(function(inputFile){
+
+        sourceFiles.forEach(function(sourceFile){
+
+
+            if(compareFunction(inputFile, sourceFile)){
+                //console.log(proFilePath+ '/' +inputFile)
+
+                var value = getStringFromKey(proKey, parseProFile(proFilePath+ '/' +inputFile));
+
+                var result = readJsonFile(jsonFilePath + '/' + sourceFile);
+
+                result[jsonKey] = value;
+
+                var resultPath = resultFilePath + '/' + sourceFile;
+
+                console.log("write new file to - " + resultPath);
+
+                fs.writeFileSync(resultPath, JSON.stringify(result, null, 4));
+
+            }
+        })
+
+    })
+
+}
+

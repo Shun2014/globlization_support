@@ -1,0 +1,42 @@
+{
+    "author": {
+        "name": "Shun Li",
+        "email": "lishunls098@163.com",
+        "url": ""
+    },
+    "name": "gl support",
+    "main": "./main",
+    "description": "A helper to add the strings in property files into json files for globlization",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Shun2014/globlization_support.git"
+    },
+    "engines": {
+
+    },
+    "dependencies": {
+
+    },
+    "devDependencies": {
+
+    },
+    "scripts": {
+
+    },
+
+    "bugs": {
+        "url": "https://github.com/Shun2014/globlization_support/issues"
+    },
+    "homepage": "https://github.com/Shun2014/globlization_support#readme",
+
+    "dist": {
+
+    },
+    "maintainers": [
+
+    ],
+    "directories": {},
+
+    "readme": ""
+}
