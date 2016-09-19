@@ -51,8 +51,7 @@ write new file to - /Users/shun/globlization_support/test/result/zh_CN.json
 ```
 
 
-### contentHelper1(languages, proFilePath, jsonFilePath, resultFilePath, 
-###        proKey, jsonKey, generateProFileNameByLanguage, generateJsonFileNameByLanguage)
+### contentHelper1(languages, proFilePath, jsonFilePath, resultFilePath,proKey, jsonKey, generateProFileNameByLanguage, generateJsonFileNameByLanguage)
         
 + languages: the languages need to handle
 + proFilePath: location for the property  files
