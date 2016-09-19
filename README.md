@@ -3,12 +3,12 @@
 read strings from property files and save them into json files
 
 ### contentHelper(proFilePath, jsonFilePath, resultFilePath, proKey, jsonKey, compareFunction)
-++ proFilePath location for the property  files
-++ jsonFilePath location for the source json files
-++ resultFilePath location for the output json files
-++ proKey  name of the key in the property file
-++ jsonKey name of the key in the json file
-++ compareFunction a function to match the property file and the json file by languages
++ proFilePath location for the property  files
++ jsonFilePath location for the source json files
++ resultFilePath location for the output json files
++ proKey  name of the key in the property file
++ jsonKey name of the key in the json file
++ compareFunction a function to match the property file and the json file by languages
 
 ### usage
 
@@ -31,7 +31,7 @@ helper.contentHelper(proFilePath, jsonFilePath, resultFilePath, proKey, jsonKey,
 
 });
 
-#### result
+### result
 
 ```javascript
 list property files: 
