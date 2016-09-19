@@ -13,7 +13,7 @@ read strings from property files and save them into json files
 ### usage
 
 ```javascript
-var helper = require('../main');
+var helper = require('gl_support');
 
 
 var proFilePath = '/Users/shun/globlization_support/test/nls' ,
